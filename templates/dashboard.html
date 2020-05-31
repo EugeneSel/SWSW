@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SWSW Dashboard</title>
+</head>
+<body>
+    <h1>Dashboard</h1>
+    <a href = "/">Back to main menu</a> <br>
+
+    <br>
+
+    <div><h3>Used hashtags</h3></div>
+    <div id="line"></div>
+</body>
+
+<!-- D3.js -->
+<script src="https://d3js.org/d3.v5.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<!-- Plotly.js -->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<script type="text/javascript">
+    var graph_line = {{graph_json_line | safe}};
+
+    Plotly.plot('line',graph_line,{});
+</script>
+</html>
