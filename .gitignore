@@ -1,2 +1,4 @@
 dao/__pycache__/
 .idea/
+py/analytical_db/__pycache__
+py/analytical_db/session_utils.py

@@ -1,3 +1,6 @@
+--------------------------------------------------------------------------------
+-- DISASTERS
+--------------------------------------------------------------------------------
 insert into 
   test_schema.natural_disasters (
     title, 
@@ -13,15 +16,18 @@ values
     77.8
   );
 
-insert into 
-  test_schema.tags (
-    tag
-  )
-values
-  (
-    'Ukraine'
-  );
+--------------------------------------------------------------------------------
+-- TAGS
+--------------------------------------------------------------------------------
+insert into test_schema.tags (tag)
+values ('Ukraine');
 
+insert into test_schema.tags (tag)
+values ('Glory');
+
+--------------------------------------------------------------------------------
+-- DISASTERS HAVE TAGS
+--------------------------------------------------------------------------------
 insert into 
   test_schema.natural_disasters_have_tags (
     natural_disasters_id, 
@@ -31,4 +37,45 @@ values
   (
     1, 
     'Ukraine'
+  );
+
+--------------------------------------------------------------------------------
+-- NEWS SOURCES
+--------------------------------------------------------------------------------
+insert into test_schema.news_sources ( name )
+values ( 'Reuters' );
+
+insert into test_schema.news_sources ( name )
+values ( 'Bloomberg' );
+
+insert into test_schema.news_sources ( name )
+values ( 'Obama Reptiloid' );
+
+--------------------------------------------------------------------------------
+-- DISASTERS HAVE NEWS
+--------------------------------------------------------------------------------
+insert into 
+  test_schema.disasters_have_news (
+    natural_disasters_id, 
+    news_source_name, 
+    count
+  )
+values
+  (
+    1, 
+    'Reuters', 
+    2
+  );
+
+insert into 
+  test_schema.disasters_have_news (
+    natural_disasters_id, 
+    news_source_name, 
+    count
+  )
+values
+  (
+    1, 
+    'Bloomberg', 
+    15
   );
