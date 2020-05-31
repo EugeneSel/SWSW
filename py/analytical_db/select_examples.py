@@ -1,4 +1,4 @@
-from DAOClasses import NaturalDisasters, Tags
+from DAOClasses import *
 from session_utils import get_moderator_session
 
 session = get_moderator_session()

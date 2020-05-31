@@ -21,14 +21,14 @@
             </tr>
             {% for news in news_list %}
                 <tr>
-                    <td>{{ news['title'] }}</td>
-                    <td>{{ news['created_time'] }}</td>
-                    <td>{{ news['description'] }}</td>
-                    <td>{{ news['confidence_level'] }}</td>
-                    <td>{{ news['tags'] }}</td>
-                    <td>{{ news['reply_count'] }}</td>
-                    <td>{{ news['favorite_count'] }}</td>
-                    <td>{{ news['retweet_count'] }}</td>
+                    <td>{{ news.title }}</td>
+                    <td>{{ news.created_time }}</td>
+                    <td>{{ news.description }}</td>
+                    <td>{{ news.confidence }}</td>
+                    <td>{{ news.number_of_tags }}</td>
+                    <td>{{ news.reply_count }}</td>
+                    <td>{{ news.favorite_count }}</td>
+                    <td>{{ news.retweet_count }}</td>
                 </tr>
             {% endfor %}
         </table>

@@ -4,8 +4,7 @@ from datetime import datetime, timedelta
 import plotly
 import plotly.graph_objs as go
 from flask import Flask, render_template
-
-from dao.analytics_functions import *
+from py.analytical_db.analytics_functions import *
 
 app = Flask(__name__)
 app.secret_key = 'development key'
@@ -13,26 +12,20 @@ app.secret_key = 'development key'
 
 @app.route('/')
 def index():
-    news_list = [{'title': 'lalala',
-                  'created_time': 'yesyes',
-                  'description': 'coucou',
-                  'confidence_level': 80,
-                  'tags': 2,
-                  'reply_count': 5,
-                  'favorite_count': 5,
-                  'retweet_count': 5}]
-    # get_news_list()
+    news_list = get_news_list()
+    for news in news_list:
+        news.number_of_tags = len(news.tags)
     return render_template('index.html', news_list=news_list)
 
 
 @app.route('/dashboard', methods=['GET'])
 def plots():
-    grouped_news_list = [[0, 1]]
+    tags_retrospective = get_tags_retrospective()
 
     trace_news = go.Line(
-        x=[news[0] for news in grouped_news_list],
-        y=[news[1] for news in grouped_news_list],
-        name='Used hashtags'
+        x=[datetime.strptime(month.created_time.strftime('%Y-%m'), '%Y-%m').date() for month in tags_retrospective],
+        y=[month.number_of_tags for month in tags_retrospective],
+        name='Tags retrospective'
     )
 
     news_line = [trace_news]
