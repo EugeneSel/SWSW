@@ -12,6 +12,7 @@ SELECT *
 FROM tags;
 '''
 
+
 def test_connection():
     connection = pymysql.connect(host=MYSQL_HOSTNAME,
                              port=3306,
