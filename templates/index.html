@@ -7,37 +7,43 @@
 <body>
     <div>
         <h1>Verified news (sorted by popularity)</h1>
+        
+        <br>
+        
+        <div>
+            <a href = '/dashboard'>View dashboard</a>
+        </div>
+        
+        <br>
 
         <table border="1 px solid black">
             <tr>
-                <td>Title</td>
                 <td>Date of Creation</td>
                 <td>Description</td>
                 <td>Confidence level</td>
                 <td>Number of tags</td>
+                <td>News sources</td>
                 <td>Number of replies</td>
                 <td>Number of favorites</td>
                 <td>Number of retweets</td>
             </tr>
             {% for news in news_list %}
                 <tr>
-                    <td>{{ news.title }}</td>
                     <td>{{ news.created_time }}</td>
                     <td>{{ news.description }}</td>
                     <td>{{ news.confidence }}</td>
                     <td>{{ news.number_of_tags }}</td>
+                    <td>
+                        {% for piece_of_news in news.news %}
+                            {{ piece_of_news.news_source_name }} : {{ piece_of_news.count }}
+                        {% endfor %}
+                    </td>
                     <td>{{ news.reply_count }}</td>
                     <td>{{ news.favorite_count }}</td>
                     <td>{{ news.retweet_count }}</td>
                 </tr>
             {% endfor %}
         </table>
-    </div>
-
-    <br>
-
-    <div>
-        <a href = '/dashboard'>View dashboard</a>
     </div>
 </body>
 </html>

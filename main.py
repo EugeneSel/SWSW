@@ -14,6 +14,7 @@ app.secret_key = 'development key'
 def index():
     news_list = get_news_list()
     for news in news_list:
+        news.confidence = int(news.confidence)
         news.number_of_tags = len(news.tags)
     return render_template('index.html', news_list=news_list)
 
@@ -23,9 +24,9 @@ def plots():
     tags_retrospective = get_tags_retrospective()
 
     trace_news = go.Line(
-        x=[datetime.strptime(month.created_time.strftime('%Y-%m'), '%Y-%m').date() for month in tags_retrospective],
+        x=[datetime.strptime(month.created_time.strftime('%Y-%m-%d'), '%Y-%m-%d').date() for month in tags_retrospective],
         y=[month.number_of_tags for month in tags_retrospective],
-        name='Tags retrospective'
+        name='Used tags retrospective'
     )
 
     news_line = [trace_news]
@@ -33,4 +34,4 @@ def plots():
     return render_template('dashboard.html', graph_json_line=graph_json_line)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0',port=8080, debug=True)
